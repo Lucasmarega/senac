@@ -1,22 +1,42 @@
 <?php
-include_once "configs/database.php";
+include_once "objetos/alunoController.php";
 
-$banco = new Database();
-$bd = $banco -> conectar();
+$controller = new AlunoController();
+$alunos = $controller->index();
+global $alunos;
+?>
 
-if ($bd) {
-    $sql = "SELECT * FROM alunos";
-    $resultado = $bd->query($sql);
-    $resultado -> execute();
-    $resultado = $resultado -> fetchAll(PDO::FETCH_ASSOC);
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Senac Hell Claro</title>
+</head>
+<body>
 
-    foreach ($resultado as $aluno) {
-        echo $aluno['nome'] . "<br>";
-        echo $aluno['email'] . "<br>";
-        echo $aluno['telefone'] . "<br>";
-        echo $aluno['login'] . "<br>";
-        echo $aluno['senha'] . "<br>";
-    }
-}else{
-    echo "falha ao conectar banco";
-}
+<h1>Senac Rio Claro</h1>
+<h2>Alunos Cadastrado</h2>
+<table>
+    <tr>
+        <td>RA</td>
+        <td>Nome</td>
+        <td>e-mail</td>
+        <td>Telefone</td>
+        <td>Login</td>
+    </tr>
+    <?php if($alunos) : ?>
+    <?php foreach($alunos as $aluno) : ?>
+    <tr>
+        <td><?php echo $aluno->ra?></td>
+        <td><?php echo $aluno->nome?></td>
+        <td><?php echo $aluno->email?></td>
+        <td><?php echo $aluno->telefone?></td>
+        <td><?php echo $aluno->login?></td>
+    </tr>
+    <?php endforeach; ?>
+    <?php endif; ?>
+</table>
+
+</body>
+</html>
