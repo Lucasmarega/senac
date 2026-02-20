@@ -17,4 +17,8 @@ Class alunoController{
         return $this->aluno->lerTodos();
     }
 
+    public function pesquisarAluno($ra){
+        return $this->aluno->pesquisaAluno($ra);
+    }
+
 }
