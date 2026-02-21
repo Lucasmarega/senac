@@ -21,6 +21,7 @@ var_dump($a);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Senac Hell Claro</title>
+
     <style>
         table,tr,td{
             border: 1px solid black;
@@ -31,6 +32,7 @@ var_dump($a);
 <body>
 
 <h1>Senac Rio Claro</h1>
+<a href="cadastro.php">Cadastrar Aluno</a>
 <h3>Pesquisar Aluno</h3>
 
 <form method="post" action="index.php">
