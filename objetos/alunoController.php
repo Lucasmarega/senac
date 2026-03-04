@@ -42,4 +42,23 @@ public function excluirAluno($ra){
         }
 }
 
+public function atualizarAluno($dados){
+        $this->aluno->ra = $dados['ra'];
+        $this->aluno->nome = $dados['nome'];
+        $this->aluno->email = $dados['email'];
+        $this->aluno->senha = $dados['senha'];
+        $this->aluno->telefone = $dados['telefone'];
+        $this->aluno->login = $dados['login'];
+
+
+        if($this->aluno->atualizar()){
+            header("location: index.php");
+        }
+}
+
+public function localizarAluno($ra){
+        return $this->aluno->buscarAluno($ra);
+
+}
+
 }

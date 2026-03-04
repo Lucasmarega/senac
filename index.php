@@ -81,7 +81,9 @@ var_dump($a);
         <td><?= $aluno->telefone?></td>
         <td><?= $aluno->login?></td>
         <td><?= $aluno->email?></td>
-        <td><a href= "index.php?excluir=<?= $aluno->ra ?>">EXCLUIR</a> </td>
+        <td><a href="index.php?excluir=<?= $aluno->ra ?>">EXCLUIR</a> </td>
+        <td><a href="atualizar.php?alterar=<?= $aluno->ra ?>">ALTERAR</a> </td>
+
     </tr>
     <?php endforeach; ?>
     <?php endif; ?>

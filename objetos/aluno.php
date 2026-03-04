@@ -70,4 +70,37 @@ Class aluno{
             return false;
         }
     }
+
+    public function atualizar(){
+        $senha_hash = password_hash($this->senha, PASSWORD_DEFAULT);
+        $sql = "UPDATE alunos SET nome = :nome, email = :email, senha = :senha,
+                  telefone = :telefone, login = :login WHERE ra = :ra";
+
+        $stmt = $this->bd->prepare($sql);
+        $stmt->bindParam(":nome", $this->nome, PDO::PARAM_STR);
+        $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
+        $stmt->bindParam(":senha", $senha_hash, PDO::PARAM_STR);
+        $stmt->bindParam(":telefone", $this->telefone, PDO::PARAM_STR);
+        $stmt->bindParam(":login", $this->telefone, PDO::PARAM_STR);
+        $stmt->bindParam(":ra", $this->ra, PDO::PARAM_INT);
+
+
+
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function buscarAluno($ra){
+        $sql = "SELECT * FROM alunos WHERE ra = :ra";
+        $resultado = $this->bd->prepare($sql);
+        $resultado->bindParam(":ra", $ra);
+        $resultado->execute();
+
+        return $resultado ->fetch(PDO::FETCH_OBJ);
+    }
+
 }
