@@ -5,7 +5,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $controller = new AlunoController();
 
     if (isset($_POST["cadastrar"])){
-        $a = $controller->cadastrarAluno($_POST["aluno"]);
+        $a = $controller->cadastrarAluno($_POST["aluno"], $_FILES["aluno"]);
     }
 }
 ?>
@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <h1>cadastro de aluno</h1>
 <a href="index.php">Voltar</a>
 
-<form action="cadastro.php" method="post">
+<form action="cadastro.php" method="post" enctype="multipart/form-data">
     <label>Nome</label>
     <input type="text" name=aluno[nome]"><br><br>
 
@@ -37,6 +37,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     <label>Senha</label>
     <input type="password" name=aluno[senha]"><br><br>
+
+    <label for="fileToUpload">selecionar foto</label>
+    <input type="file" name="aluno[fileToUpload]" id="fileToUpload"><br><br>
 
     <button name="cadastrar">cadastrar</button>
 </form>

@@ -41,7 +41,7 @@ Class aluno{
 
 
     public function cadastrar(){
-        $sql = "INSERT INTO alunos (nome, email, telefone, login, senha) VALUES (:nome, :email, :telefone, :login, :senha)";
+        $sql = "INSERT INTO alunos (nome, email, telefone, login, senha, imagem) VALUES (:nome, :email, :telefone, :login, :senha, :imagem)";
 
         $SENHA_HASH = password_hash($this->senha, PASSWORD_DEFAULT);
         $stmt = $this->bd->prepare($sql);
@@ -50,6 +50,7 @@ Class aluno{
         $stmt->bindParam(":telefone", $this->telefone, PDO::PARAM_STR);
         $stmt->bindParam(":login", $this->login, PDO::PARAM_STR);
         $stmt->bindParam(":senha", $SENHA_HASH, PDO::PARAM_STR);
+        $stmt->bindParam(":imagem", $this->img, PDO::PARAM_STR);
 
         if($stmt->execute()){
             return true;
