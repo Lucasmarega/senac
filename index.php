@@ -72,17 +72,29 @@ var_dump($a);
         <td>e-mail</td>
         <td>Telefone</td>
         <td>Login</td>
-    </tr>
+        <td>Imagem</td>
+
+    <tr>
+
     <?php if($alunos) : ?>
     <?php foreach($alunos as $aluno) : ?>
     <tr>
         <td><?= $aluno->ra?></td>
         <td><?= $aluno->nome?></td>
+        <td><?= $aluno->email?></td>
         <td><?= $aluno->telefone?></td>
         <td><?= $aluno->login?></td>
-        <td><?= $aluno->email?></td>
-        <td><a href="index.php?excluir=<?= $aluno->ra ?>">EXCLUIR</a> </td>
+        <td><?= $aluno ->imagem; ?></td>
+
+        <?php if($aluno->imagem =="") :  ?>
+        <td><img style="width: 20%;" src="imagens/image-fail.png"></td>
+        <?php else :  ?>
+        <td><img style="width: 20%;" src="uploads/<?= $aluno->imagem;?>"></td>
+        <?php endif; ?>
+
+
         <td><a href="atualizar.php?alterar=<?= $aluno->ra ?>">ALTERAR</a> </td>
+        <td><a href="index.php?excluir=<?= $aluno->ra ?>">EXCLUIR</a> </td>
 
     </tr>
     <?php endforeach; ?>
