@@ -30,13 +30,8 @@ Class aluno{
         $resultado->execute();
 
         return $resultado ->fetch(PDO::FETCH_OBJ);
+
     }
-
-
-
-
-
-
 
 
 
@@ -103,5 +98,32 @@ Class aluno{
 
         return $resultado ->fetch(PDO::FETCH_OBJ);
     }
+
+    public function login(){
+        $sql = "SELECT * FROM alunos WHERE login = :login";
+        $stmt = $this->bd->prepare($sql);
+        $stmt->bindParam(":login", $this->login, PDO::PARAM_STR);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+
+
+        if($resultado){
+            if(password_verify($this->senha, $resultado->senha)){
+                session_start();
+                $_SESSION["aluno"] = $resultado;
+                header("location: index.php");
+               exit();
+
+            } else{
+           header("location: login.php");
+                exite();
+            }
+        }
+
+    }
+
+
+
+
 
 }
